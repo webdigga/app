@@ -1,0 +1,11 @@
+/* dhl specific css */
+
+/* primary - #FC0, yellow */
+/* secondary - #D50610, red */
+
+#container {
+	background:#FC0;
+}
+body, button, input, textarea, a {
+	color: #D50610 !important;
+}

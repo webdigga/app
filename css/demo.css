@@ -1,0 +1,12 @@
+/* demo specific css */
+
+/* primary - #0082BB, light blue */
+/* secondary - #003A6D, dark blue */
+/* tertiary - #7E94AC, silver blue */
+
+#container {
+	background:#333;
+}
+body, button, input, textarea, a {
+	color: #fff !important;
+}
