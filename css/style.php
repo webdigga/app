@@ -242,9 +242,12 @@ input[type=file] {
  float:left;
  clear:left;
 }
-footer {
- margin-top:10px;
- text-align:right;
+footer {	
+	text-align:right; 
+	color: black;	
+	clear: left;
+	margin: 3px auto;	
+	font-style: italic;	
 }
 .error::-webkit-input-placeholder  {
  color:red !important;  

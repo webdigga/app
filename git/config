@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+	hideDotFiles = dotGitOnly
+[gui]
+	wmstate = normal
+	geometry = 1143x581+304+128 233 192
+[remote "origin"]
+	url = ssh://sls@slsapp.com:1234/fvp/appcident.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

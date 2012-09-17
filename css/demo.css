@@ -7,6 +7,9 @@
 #container {
 	background:#333;
 }
-body, button, input, textarea, a {
+body, a {
 	color: #fff !important;
+}
+input {
+	color:#333;
 }

@@ -19,4 +19,7 @@
 			</div>
 		</form>
 	</div>
+	<footer>
+		Powered by Appcident
+	</footer>
 </div>
