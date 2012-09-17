@@ -20,6 +20,6 @@
 		</form>
 	</div>
 	<footer>
-		Powered by Appcident
+		Powered by App-cident
 	</footer>
 </div>

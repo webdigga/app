@@ -1,29 +1,29 @@
 <?php
 
+// includes
 include('dbconnect.php');
 include('config.php');
 require_once('class.phpmailer.php');
 include("class.smtp.php");
 
-
+/*
 echo '<pre>';
 print_r($_FILES);
 echo  '</pre>';
 
 echo '<pre>';
 print_r($_POST);
-echo "company id". $companyid;
 echo  '</pre>';
+*/
 
-
+//files
 $uploaded = 0;
 $message = array();  
 foreach ($_FILES['file']['name'] as $i => $name) {
 	if ($_FILES['file']['error'][$i] == 4) {
 		continue; 
 	}   
-	if ($_FILES['file']['error'][$i] == 0) {
-	   
+	if ($_FILES['file']['error'][$i] == 0) {	   
 		if ($_FILES['file']['size'][$i] > 99439443) {		
 			$message[] = "$name exceeded file limit.";
 			continue;  
@@ -34,9 +34,8 @@ foreach ($_FILES['file']['name'] as $i => $name) {
 		continue;
 	}	
 	//* Move  File           
-	move_uploaded_file($_FILES["file"]["tmp_name"][$uploaded], "images/appcidents/" . date('Y_m_d_H_i_s_'). $uploaded . $_FILES["file"]["name"][$uploaded]);  
-		
-	$uploaded++;
+	move_uploaded_file($_FILES["file"]["tmp_name"][$uploaded], "images/appcidents/" . date('Y_m_d_H_i_s_').  $uploaded . $_FILES["file"]["name"][$uploaded]); 		
+		$uploaded++;
 	}
 }
 //echo $uploaded . ' files uploaded.';
@@ -44,7 +43,7 @@ foreach ($message as $error) {
   echo $error;
 }
 
-
+// set the variables
 $name=$_POST['driver-select'];
 $name=ucwords($name);
 $nameresult = mysql_query("SELECT * FROM driver WHERE id = $name");
@@ -54,12 +53,9 @@ while($row = mysql_fetch_array($nameresult)) {
 }
 $licensePlateNumber=$_POST['vehicle-select'];
 $location=$_POST['location'];
-
-
 $message=$_POST['message'];
 $message = stripslashes($message);
 $message = mysql_real_escape_string($message);
-
 $tpName=$_POST['tpName'];
 $tpPneNumber=$_POST['tpPneNumber'];
 $tpLicensePlateNumber=$_POST['tpLicensePlateNumber'];
@@ -68,18 +64,16 @@ $tpModel=$_POST['tpModel'];
 $driverid=$_POST['driver-select'];
 $vehicleid=$_POST['vehicle-select'];
 $geolocation=$_POST['geolocation'];
-
 $temperature=$_POST['temperature'];
 $weather=$_POST['weather'];
 $wind=$_POST['wind'];
 $visibility=$_POST['visibility'];
 $image=$_POST['image'];
 $imagealt=$_POST['imagealt'];
+$companyid=$_POST['companyid'];
 
-
-
+// prepare the mail
 $mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
-
 $mail->IsSMTP(); // telling the class to use SMTP
 
 try {
@@ -98,20 +92,18 @@ try {
   $mail->SetFrom('webdigga42@gmail.com', 'Appcident Info');
   $mail->AddReplyTo('webdigga42@gmail.com', 'Appcident Info');
   $mail->Subject = 'Appcident info';  
-  $mail->Body = "Dear Appcident Admin,\r\n\r\nAn accident has been logged by ".$name.", driving vehicle registered:- ".$licensePlateNumber.".\r\nThe driver can be contacted on:- ".$phoneNumber.".\r\nBelow are the details of the accident.\r\n\r\nEvent:- ".$message."\r\n\r\nThird Party Details:-\r\n\r\nName: ".$tpName."\r\nPhone Number: ".$tpPneNumber."\r\nLicense Plate Number: ".$tpLicensePlateNumber."\r\nMake: ".$tpMake."\r\nModel: ".$tpModel."\r\n\r\n";  
-    
+  $mail->Body = "Dear Appcident Admin,\r\n\r\nAn accident has been logged by ".$name.", driving vehicle registered:- ".$licensePlateNumber.".\r\nThe driver can be contacted on:- ".$phoneNumber.".\r\nBelow are the details of the accident.\r\n\r\nEvent:- ".$message."\r\n\r\nThird Party Details:-\r\n\r\nName: ".$tpName."\r\nPhone Number: ".$tpPneNumber."\r\nLicense Plate Number: ".$tpLicensePlateNumber."\r\nMake: ".$tpMake."\r\nModel: ".$tpModel."\r\n\r\n";
   
-  // insert 3rd party details
+	
+	// DO THE INSERTS
+	// insert 3rd party details
   mysql_query("INSERT INTO thirdparty (name, phonenumber) VALUES ('$tpName', '$tpPneNumber')");
   $tpdriverid = mysql_insert_id();
   // insert 3rd party vehicle
   mysql_query("INSERT INTO thirdpartyvehicle (id, licenseplate, make, model) VALUES ('$tpdriverid', '$tpLicensePlateNumber', '$tpMake', '$tpModel')");
   $tpvehicleid = mysql_insert_id(); 
   // insert accident details
-  $accidentSql = "INSERT INTO accident (driverid, thirdpartyid, vehiclelicenseplate, thirdpartylicenseplate, location, description, companyid) VALUES ('$driverid', '$tpdriverid', '$vehicleid', '$tpLicensePlateNumber', '$geolocation', '$message', $companyid)";
-	
-	echo $accidentSql;
-	
+  $accidentSql = "INSERT INTO accident (driverid, thirdpartyid, vehiclelicenseplate, thirdpartylicenseplate, location, description, companyid) VALUES ('$driverid', '$tpdriverid', '$vehicleid', '$tpLicensePlateNumber', '$geolocation', '$message', $companyid)";	
 	mysql_query($accidentSql);
   $accidentid = mysql_insert_id();
   // insert images details and attach
@@ -127,15 +119,15 @@ try {
   // insert weather details
   mysql_query("INSERT INTO weather (id, temperature, weather, wind, visibility, image, imagealt) VALUES ('$accidentid', '$temperature', '$weather', '$wind', '$visibility', '$image', '$imagealt')");
   
+	// send the mail
   $mail->Send();
-  
 
+// output any error messages
 } catch (phpmailerException $e) {
   echo $e->errorMessage(); //Pretty error messages from PHPMailer
 } catch (Exception $e) {
   echo $e->getMessage(); //Boring error messages from anything else!
 }
-
 ?>
 
 <!doctype html>
@@ -145,7 +137,7 @@ try {
 
 <head>
 	<meta charset="utf-8">
-	<title>Appcident / Accident App</title>
+	<title>App-cident</title>
 	<meta name="description" content="">
 	<meta name="author" content="David White">
 	<meta name="HandheldFriendly" content="True">
@@ -182,14 +174,14 @@ try {
 </body>
 
 <script>
-    MBP.scaleFix();
-  </script>
-  <script>
-    var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
-    s.parentNode.insertBefore(g,s)}(document,"script"));
-  </script>
+  MBP.scaleFix();
+</script>
+<script>
+	var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+	g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+	s.parentNode.insertBefore(g,s)}(document,"script"));
+</script>
 
 </body>
 </html>

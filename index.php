@@ -1,7 +1,9 @@
 <?
 
+// connect to the database
 include('dbconnect.php');
 
+// start the session
 session_start();
 if (isset($_SESSION['username'])) {
 	$sessuser = $_SESSION['username'];
@@ -27,19 +29,8 @@ if (isset($_SESSION['username'])) {
 	/* pull out all of the companies vehicles */
 	$vehicleresult = mysql_query("SELECT * FROM vehicle WHERE companyid = $companyid");
 	/* pull out all of the weather */
-	$weatherresult = mysql_query("SELECT * FROM weather");
-	
-	
-	
-	
-	
+	$weatherresult = mysql_query("SELECT * FROM weather");	
 }
-
-
-
-
-
-
 ?>
 
 <!doctype html>
@@ -49,7 +40,7 @@ if (isset($_SESSION['username'])) {
 
 <head>
 	<meta charset="utf-8">
-	<title>Appcident / Accident App</title>
+	<title>App-cident</title>
 	<meta name="description" content="">
 	<meta name="author" content="David White">
 	<meta name="HandheldFriendly" content="True">
@@ -99,7 +90,7 @@ if (isset($_SESSION['username'])) {
 						<input type="tel" name="tpPneNumber" id="tpPneNumber" placeholder="Enter 3rd party phone number" />	
 						<input type="text" name="tpLicensePlateNumber" id="tpLicensePlateNumber" placeholder="Enter 3rd party license plate number" />	
 						<input type="text" name="tpMake" id="tpMake" placeholder="Enter 3rd party Manufacturer" />				
-						<input type="text" name="tpModel" id="tpModel" placeholder="Enter 3rd party Model" />						
+						<input type="text" name="tpModel" id="tpModel" placeholder="Enter 3rd party Model" />					
 					</div>
 					<div class="steps">
 						Step 1 of 4.  Swipe left to go to the next step.
@@ -216,7 +207,8 @@ if (isset($_SESSION['username'])) {
 						<input type="hidden" value="" id="wind" name="wind" />
 						<input type="hidden" value="" id="visibility" name="visibility" />
 						<input type="hidden" value="" id="image" name="image" />
-						<input type="hidden" value="" id="imagealt" name="imagealt" />					
+						<input type="hidden" value="" id="imagealt" name="imagealt" />
+						<input type="hidden" value="<?=$companyid;?>" id="companyid" name="companyid" />
 						<input type="submit" class="mailSubmit" value="Log Appcident" />
 					</div>
 				</div>				
