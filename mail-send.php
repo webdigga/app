@@ -5,7 +5,7 @@ include('config.php');
 require_once('class.phpmailer.php');
 include("class.smtp.php");
 
-/*
+
 echo '<pre>';
 print_r($_FILES);
 echo  '</pre>';
@@ -14,7 +14,7 @@ echo '<pre>';
 print_r($_POST);
 echo "company id". $companyid;
 echo  '</pre>';
-*/
+
 
 $uploaded = 0;
 $message = array();  
@@ -152,7 +152,7 @@ try {
 	<link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">  
 	<link rel="shortcut icon" href="img/l/apple-touch-icon.png">
 	<meta http-equiv="cleartype" content="on">
-	<link rel="stylesheet" href="css/style.css?v=1">	  
+	<link rel="stylesheet" href="/css/style.css?v=1">	  
 </head>
 
 <body>

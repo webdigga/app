@@ -176,8 +176,7 @@ input:not([type=file]) {
  background: #fff;
  border-radius: 5px; -moz-border-radius: 5px; 
  -webkit-border-radius: 5px; 
- font-size: 0.9em; 
- text-transform: uppercase;
+ font-size: 0.9em;
  text-indent: 5px;
  color:#000;
 }
@@ -197,8 +196,7 @@ textarea {
  background: #fff; 
  border-radius: 5px; -moz-border-radius: 5px; 
  -webkit-border-radius: 5px; 
- font-size: 0.9em; 
- text-transform: uppercase;
+ font-size: 0.9em;
  text-indent: 5px;
  line-height: 2.5em;
  color:#000;
