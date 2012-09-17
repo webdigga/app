@@ -92,7 +92,9 @@ try {
   $mail->Username   = "webdigga42@gmail.com";  // GMAIL username
   $mail->Password   = "answer42assasin";            // GMAIL password
   $mail->AddReplyTo('webdigga42@gmail.com', 'Appcident Info');
-  $mail->AddAddress('webdigga42@gmail.com', 'David White');  
+  $mail->AddAddress('webdigga42@gmail.com', 'David White');
+	$mail->AddAddress('adam.coogan@gmail.com', 'Adam Coogan');
+	$mail->AddAddress('jonnyrowse@hotmail.com', 'Jonny Rowse');
   $mail->SetFrom('webdigga42@gmail.com', 'Appcident Info');
   $mail->AddReplyTo('webdigga42@gmail.com', 'Appcident Info');
   $mail->Subject = 'Appcident info';  
@@ -107,6 +109,8 @@ try {
   $tpvehicleid = mysql_insert_id(); 
   // insert accident details
   $accidentSql = "INSERT INTO accident (driverid, thirdpartyid, vehiclelicenseplate, thirdpartylicenseplate, location, description, companyid) VALUES ('$driverid', '$tpdriverid', '$vehicleid', '$tpLicensePlateNumber', '$geolocation', '$message', $companyid)";
+	
+	echo $accidentSql;
 	
 	mysql_query($accidentSql);
   $accidentid = mysql_insert_id();
@@ -152,7 +156,7 @@ try {
 	<link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">  
 	<link rel="shortcut icon" href="img/l/apple-touch-icon.png">
 	<meta http-equiv="cleartype" content="on">
-	<link rel="stylesheet" href="/css/style.css?v=1">	  
+	<link rel="stylesheet" href="/css/style.php">	  
 </head>
 
 <body>
