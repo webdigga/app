@@ -6,24 +6,12 @@ include('dbconnect.php');
 // start the session
 session_start();
 if (isset($_SESSION['username'])) {
-	$sessuser = $_SESSION['username'];
-	
+	$sessuser = $_SESSION['username'];	
 	/* companyid */
 	$companyidresult = mysql_query("SELECT companyid FROM users WHERE username = '$sessuser'");
 	while($row = mysql_fetch_array($companyidresult)) {
 		$companyid = $row['companyid'];
-	}
-
-	/* big switch! */
-	switch ($companyid) {
-		case '2'; 
-			$imgNum = 2;
-		break;
-		case '3'; 
-			$imgNum = 3;
-		break;
 	}	
-	
 	/* pull out all of the companies drivers */
 	$driverresult = mysql_query("SELECT * FROM driver WHERE companyid = $companyid");
 	/* pull out all of the companies vehicles */
@@ -33,210 +21,170 @@ if (isset($_SESSION['username'])) {
 }
 ?>
 
-<!doctype html>
-<!-- Conditional comment for mobile ie7 http://blogs.msdn.com/b/iemobile/ -->
-<!--[if IEMobile 7 ]>    <html class="no-js iem7"> <![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"> <!--<![endif]-->
-
-<head>
-	<meta charset="utf-8">
-	<title>App-cident</title>
-	<meta name="description" content="">
-	<meta name="author" content="David White">
-	<meta name="HandheldFriendly" content="True">
-	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
-	<link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">  
-	<link rel="shortcut icon" href="img/l/apple-touch-icon.png">
-	<meta http-equiv="cleartype" content="on">
-	<link rel="stylesheet" href="css/style.php?v=1">
-	<script src="js/libs/modernizr-custom.js"></script>
-	<script>Modernizr.mq('(min-width:0)') || document.write('<script src="js/libs/respond.min.js">\x3C/script>')</script>  
-</head>
-
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>App-cident</title> 
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/main.css" />		
+	<link rel="stylesheet" href="/css/dhl.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile.structure-1.1.1.min.css" /> 
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
+	<script src="/js/main.js"></script>
+  <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+</head> 
 <body>
+	
 	<? if(isset($_SESSION["username"])) {?>
-  <div id="container">  
-    <header>
-      <h1></h1>			
-    </header>
-    <div id="main" data-role="page">	
-		<form id="sendMail" action="mail-send.php" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-			<fieldset>			
-			    <div class="formSectionOne formSection" id="pg1">
-					<div class="traffic-lights">
-						<div class="red light-holder holder1 light-selected">
-							<div class="red-light light">1</div>
-						</div>
-						<div class="red light-holder holder2">
-							<div class="red-light light">2</div>
-						</div>
-						<div class="red light-holder holder3">
-							<div class="red-light light">3</div>
-						</div>
-						<div class="red light-holder holder4">
-							<div class="red-light light">4</div>
-						</div>
-					</div>
-					<div class="container-padding">
-						<a class="logout" href="logout.php">Log out</a>
-						<img src="/images/logos/<?=$imgNum;?>.png" />					
-						<h2>About third party.....</h2>
-						<div class="photo-alert">** Please make sure you have your accident photos ready before starting.</div>
-						<input type="text" name="tpName" id="tpName" placeholder="Enter 3rd party full name" />
-						<input type="tel" name="tpPneNumber" id="tpPneNumber" placeholder="Enter 3rd party phone number" />	
-						<input type="text" name="tpLicensePlateNumber" id="tpLicensePlateNumber" placeholder="Enter 3rd party license plate number" />	
-						<input type="text" name="tpMake" id="tpMake" placeholder="Enter 3rd party Manufacturer" />				
-						<input type="text" name="tpModel" id="tpModel" placeholder="Enter 3rd party Model" />					
-					</div>
-					<div class="steps">
-						Step 1 of 4.  Swipe left to go to the next step.
-					</div>
-				</div>				
-				<div class="formSectionTwo formSection" id="pg2">
-					<div class="traffic-lights">
-						<div class="red light-holder holder1">
-							<div class="red-light light">1</div>
-						</div>
-						<div class="green light-holder holder2 light-selected">
-							<div class="red-light light">2</div>
-						</div>
-						<div class="red light-holder holder3">
-							<div class="red-light light">3</div>
-						</div>
-						<div class="red light-holder holder4">
-							<div class="red-light light">4</div>
-						</div>
-					</div>
-					<div class="container-padding">
-						<a class="logout" href="logout.php">Log out</a>
-						<img src="/images/logos/<?=$imgNum;?>.png" />					
-						<h2>About the accident.....</h2>
-						<div class="photo-upload-note">Please upload photo(s) of accident here...</div>
-						<input type="file" name="file[]" id="file0" size="20" />		
-						<span class="add-photo">+</span>
-						<span class="remove-photo" style="display:none;">-</span>
-						<textarea name="message" id="message" placeholder="Description / Other"></textarea>						
-					</div>
-					<div class="steps">
-						Step 2 of 4.  Swipe left to go to the next step.
-					</div>
-				</div>				
-				<div class="formSectionThree formSection" id="pg3">
-					<div class="traffic-lights">
-						<div class="red light-holder holder1">
-							<div class="red-light light">1</div>
-						</div>
-						<div class="green light-holder holder2">
-							<div class="red-light light">2</div>
-						</div>
-						<div class="red light-holder holder3 light-selected">
-							<div class="red-light light">3</div>
-						</div>
-						<div class="red light-holder holder4">
-							<div class="red-light light">4</div>
-						</div>
-					</div>
-					<div class="container-padding">
-						<a class="logout" href="logout.php">Log out</a>
-						<img src="/images/logos/<?=$imgNum;?>.png" class="logo" />					
-						<h2>Checklist.....</h2>
-						<input type="checkbox" id="takenPhotograph" name="takenPhotograph" />
-						<label for="takenPhotograph">Take Photographs</label>					
-						<input type="checkbox" id="check3rdPartyId" name="check3rdPartyId" />
-						<label for="check3rdPartyId">Check 3rd Party ID</label>					
-						<input type="checkbox" id="checkInjuries" name="checkInjuries" />
-						<label for="checkInjuries">Check for injuries to 3rd party</label>
-						<input type="checkbox" id="checkPhotos" name="checkPhotos" />
-						<label for="checkPhotos">Take photos of damage to both vehicles</label>
-						<input type="checkbox" id="checkInteriorPhotos" name="checkInteriorPhotos" />
-						<label for="checkInteriorPhotos">Take photos of TP interior</label>
-						<input type="checkbox" id="checkTpPhotos" name="checkTpPhotos" />
-						<label for="checkTpPhotos">Take photos of TP's</label>
-						<input type="checkbox" id="checkPolice" name="checkPolice" />
-						<label for="checkPolice">Report the incident to the Police</label>						
-					</div>
-					<div class="steps">
-						Step 3 of 4.  Swipe left to go to the next step.
-					</div>
-				</div>				
-				<div class="formSectionFour formSection" id="pg4">
-					<div class="traffic-lights">
-						<div class="red light-holder holder1">
-							<div class="red-light light">1</div>
-						</div>
-						<div class="green light-holder holder2">
-							<div class="red-light light">2</div>
-						</div>
-						<div class="red light-holder holder3">
-							<div class="red-light light">3</div>
-						</div>
-						<div class="red light-holder holder4 light-selected">
-							<div class="red-light light">4</div>
-						</div>
-					</div>
-					<div class="container-padding">
-						<a class="logout" href="logout.php">Log out</a>
-						<img src="/images/logos/<?=$imgNum;?>.png" class="logo" />					
-						<h2>About you.....</h2>
-						<!-- driver details -->
-						<select id="driver-select" name="driver-select">
-							<option disabled="disabled" selected="selected" value="0">Please choose your name from this list...</option>
-							<?
-							while($row = mysql_fetch_array($driverresult)) {
-								echo "<option value=". $row['id'] .">". $row['name'] ."</option>";
-							}
-							?>
-						</select>
-						<!-- vehicle details -->
-						<select id="vehicle-select" name="vehicle-select">
-							<option disabled="disabled" selected="selected" value="0">Please choose your license plate from this list...</option>
-							<?
-							while($row = mysql_fetch_array($vehicleresult)) {
-								$licenseplate = str_replace(' ', '', $row['licenseplate']); 
-								echo "<option value=". $licenseplate .">". $row['licenseplate'] ."</option>";
-							}
-							?>
-						</select>
-						<input type="hidden" value="" id="geolocation" name="geolocation" />					
-						<input type="hidden" value="" id="temperature" name="temperature" />
-						<input type="hidden" value="" id="weather" name="weather" />
-						<input type="hidden" value="" id="wind" name="wind" />
-						<input type="hidden" value="" id="visibility" name="visibility" />
-						<input type="hidden" value="" id="image" name="image" />
-						<input type="hidden" value="" id="imagealt" name="imagealt" />
-						<input type="hidden" value="<?=$companyid;?>" id="companyid" name="companyid" />
-						<input type="submit" class="mailSubmit" value="Log Appcident" />
-					</div>
-				</div>				
-			</fieldset>
-		</form>		
-    </div>
-    <footer></footer>
-  </div>
-	<?
-	} else {
-		include('login.php');
-	}	
-	?> 
-  <script src="/js/libs/jquery-1.7.2.min.js"></script>  
-  <script src="/js/plugins.js"></script>
-  <!-- scripts concatenated and minified via ant build script -->
-  <script src="js/mylibs/helper.js"></script>
-  <!-- end concatenated and minified scripts-->
-  <script src="/js/script.js"></script> 
-  <script>
-    MBP.scaleFix();
-  </script>
-  <script>
-    var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
-    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
-    s.parentNode.insertBefore(g,s)}(document,"script"));
-  </script>
 
+	<form id="sendMail" action="action.php" method="post" enctype="multipart/form-data" data-ajax="false">
+	
+		<div data-role="page" id="one">
+			<div data-role="header">
+				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>			
+				<h1>APP-CIDENT</h1>
+				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+			</div>
+			<div data-role="content" class="section-1">	
+				<h2>About third party.....</h2>
+				<p>
+					<em>**Please ensure you have photos of the accident ready before starting.</em>
+				</p>
+				<label for="tpName">Enter 3rd party full name:</label>
+				<input type="text" name="tpName" id="tpName" value="" data-mini="true" />				
+				<label for="tpPneNumber">Enter 3rd party phone number:</label>
+				<input type="tel" name="tpPneNumber" id="tpPneNumber" value="" data-mini="true" />
+				<label for="tpLicensePlateNumber">Enter 3rd party license plate number:</label>
+				<input type="text" name="tpLicensePlateNumber" id="tpLicensePlateNumber" value="" data-mini="true" />	
+				<label for="tpMake">Enter 3rd party manufacturer:</label>
+				<input type="text" name="tpMake" id="tpMake" value="" data-mini="true" />	
+				<label for="tpModel">Enter 3rd party model:</label>
+				<input type="text" name="tpModel" id="tpModel" value="" data-mini="true" />					
+				<a href="#two" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
+			</div><!-- /content -->			
+			<div data-role="footer" data-position="fixed" class="footer">
+				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+			</div><!-- /footer -->			
+		</div><!-- /page -->
+		
+		<div data-role="page" id="two">
+			<div data-role="header">
+				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+				<h1>APP-CIDENT</h1>
+				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+			</div>
+			<div data-role="content" class="section-2">
+				<h2>About the accident.....</h2>
+				<p>
+					<em>Please upload photo(s) of accident here.</em>
+				</p>
+				<input type="file" name="file[]" id="file0" size="20">				
+				<a href="#" class="add-photo" data-role="button" data-icon="add" data-iconpos="notext">Add</a>
+				<a href="#" class="remove-photo" style="display:none;" data-role="button" data-icon="minus" data-iconpos="notext">Minus</a>
+				<label for="message">Give a description here of exactly how the accident occurred:</label>
+				<textarea name="message" id="message"></textarea>				
+				<a href="#one" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="flip" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
+				<a href="#three" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
+			</div><!-- /content -->
+			<div data-role="footer" data-position="fixed" class="footer">
+				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+			</div><!-- /footer -->
+		</div><!-- /page -->		
+		
+		<div data-role="page" id="three">
+			<div data-role="header">
+				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+				<h1>APP-CIDENT</h1>
+				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+			</div>
+			<div data-role="content" class="section-3">	
+				<h2>Checklist.....</h2>
+				<label><input type="checkbox" name="takenPhotograph" id="takenPhotograph" /> Take photographs </label>
+				<label><input type="checkbox" name="check3rdPartyId" id="check3rdPartyId" /> Check 3rd party id </label>		
+				<label><input type="checkbox" name="checkInjuries" id="checkInjuries" /> Check for injuries to 3rd party </label>
+				<label><input type="checkbox" name="checkPhotos" id="checkPhotos" /> Take photos of damage to both vehicles </label>
+				<label><input type="checkbox" name="checkInteriorPhotos" id="checkInteriorPhotos" /> Take photos of 3rd party interior </label>
+				<label><input type="checkbox" name="checkTpPhotos" id="checkTpPhotos" /> Take photos of 3rd party </label>
+				<label><input type="checkbox" name="checkPolice" id="checkPolice" /> Report the incident to the police </label>	
+				<a href="#two" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="flip" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
+				<a href="#four" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
+			</div><!-- /content -->
+			<div data-role="footer" data-position="fixed" class="footer">
+				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+		
+		<div data-role="page" id="four">
+			<div data-role="header">
+				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+				<h1>APP-CIDENT</h1>
+				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+			</div>
+			<div data-role="content" class="section-4">				
+				<h2>About you.....</h2>				
+				<select id="driver-select" name="driver-select">
+					<option disabled="disabled" selected="selected" value="0">Please choose your name from this list...</option>
+					<?
+					while($row = mysql_fetch_array($driverresult)) {
+						echo "<option value=". $row['id'] .">". $row['name'] ."</option>";
+					}
+					?>
+				</select>				
+				<select id="vehicle-select" name="vehicle-select">
+					<option disabled="disabled" selected="selected" value="0">Please choose your license plate from this list...</option>
+					<?
+					while($row = mysql_fetch_array($vehicleresult)) {
+						$licenseplate = str_replace(' ', '', $row['licenseplate']); 
+						echo "<option value=". $licenseplate .">". $row['licenseplate'] ."</option>";
+					}
+					?>
+				</select>				
+				<input type="hidden" value="" id="geolocation" name="geolocation" />					
+				<input type="hidden" value="" id="temperature" name="temperature" />
+				<input type="hidden" value="" id="weather" name="weather" />
+				<input type="hidden" value="" id="wind" name="wind" />
+				<input type="hidden" value="" id="visibility" name="visibility" />
+				<input type="hidden" value="" id="image" name="image" />
+				<input type="hidden" value="" id="imagealt" name="imagealt" />
+				<input type="hidden" value="<?=$companyid;?>" id="companyid" name="companyid" />				
+				<a href="#three" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="flip" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
+				<button type="submit" class="next" data-inline="true" data-icon="gear" aria-disabled="false">Log App-cident</button>
+			</div><!-- /content -->
+			<div data-role="footer" data-position="fixed" class="footer">
+				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+		
+	</form>
+
+	<?} else {?>	
+	
+	<div data-role="page" id="login">
+		<div data-role="header">	
+			<a href="#" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+			<h1>APP-CIDENT</h1>
+			<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+		</div>
+		<div data-role="content">	
+			<h2>Login</h2>
+			<form action="/authlogin.php" method="post">
+				<label for="username">Username: </label>			
+				<input type="text" name="username" id="basic" value=""  />			
+				<label for="password">Password: </label>
+				<input type="password" name="password" id="password" value="" />
+				<input type="submit" value="Log in"/>
+
+				<div class="error-message">			
+				<?				
+				if(isset($_GET['error']) && $_GET['error']==1) {	
+					echo "**Your username or password is incorrect, please try again";	
+				}			
+				?>			
+				</div>
+			</form>
+		</div><!-- /content -->
+	</div><!-- /page -->
+	<?}?>	
 </body>
 </html>
