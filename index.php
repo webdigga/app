@@ -27,8 +27,37 @@ if (isset($_SESSION['username'])) {
 	<title>App-cident</title> 
 	<meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/css/main.css" />		
-	<link rel="stylesheet" href="/css/dhl.css" />
+	<link rel="stylesheet" href="/css/main.css" />
+
+	<?
+	// check which company we are logged in as and switch the stylesheet
+	if(isset($companyid)) {	
+		switch ($companyid) {
+			// dhl
+			case 2:
+				echo "<link rel=\"stylesheet\" href=\"/css/dhl.css\" />";
+			break;
+			// demo
+			case 3:
+				echo "<link rel=\"stylesheet\" href=\"/css/demo.css\" />";
+			break;
+			case 4:
+				echo "<link rel=\"stylesheet\" href=\"/css/unite.css\" />";
+			break;
+			default:
+				echo "<link rel=\"stylesheet\" href=\"/css/default.css\" />";
+			break;
+		}
+	} else {
+		echo "<link rel=\"stylesheet\" href=\"/css/default.css\" />";
+	}
+	?>
+	
+	
+	
+	
+	
+	
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile.structure-1.1.1.min.css" /> 
   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
 	<script src="/js/main.js"></script>
@@ -64,7 +93,8 @@ if (isset($_SESSION['username'])) {
 				<a href="#two" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
 			</div><!-- /content -->			
 			<div data-role="footer" data-position="fixed" class="footer">
-				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+				<div class="prev logo"></div>
+				<a class="next" href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
 			</div><!-- /footer -->			
 		</div><!-- /page -->
 		
@@ -88,7 +118,8 @@ if (isset($_SESSION['username'])) {
 				<a href="#three" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
 			</div><!-- /content -->
 			<div data-role="footer" data-position="fixed" class="footer">
-				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+				<div class="prev logo"></div>
+				<a class="next" href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
 			</div><!-- /footer -->
 		</div><!-- /page -->		
 		
@@ -111,7 +142,8 @@ if (isset($_SESSION['username'])) {
 				<a href="#four" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
 			</div><!-- /content -->
 			<div data-role="footer" data-position="fixed" class="footer">
-				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+				<div class="prev logo"></div>
+				<a class="next" href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
 			</div><!-- /footer -->
 		</div><!-- /page -->
 		
@@ -152,7 +184,8 @@ if (isset($_SESSION['username'])) {
 				<button type="submit" class="next" data-inline="true" data-icon="gear" aria-disabled="false">Log App-cident</button>
 			</div><!-- /content -->
 			<div data-role="footer" data-position="fixed" class="footer">
-				<a href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
+				<div class="prev logo"></div>
+				<a class="next" href="/logout.php" data-role="button" data-icon="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Logout</a>
 			</div><!-- /footer -->
 		</div><!-- /page -->
 		
@@ -183,7 +216,7 @@ if (isset($_SESSION['username'])) {
 				?>			
 				</div>
 			</form>
-		</div><!-- /content -->
+		</div><!-- /content -->		
 	</div><!-- /page -->
 	<?}?>	
 </body>
