@@ -8,12 +8,11 @@ session_start();
 if (isset($_SESSION['username'])) {
 	$sessuser = $_SESSION['username'];	
 	/* companyid */
-	$companyidresult = mysql_query("SELECT companyid FROM users WHERE username = '$sessuser'");
+	$companyidresult = mysql_query("SELECT id, companyid FROM driver WHERE username = '$sessuser'");
 	while($row = mysql_fetch_array($companyidresult)) {
+		$driverid = $row['id'];
 		$companyid = $row['companyid'];
-	}	
-	/* pull out all of the companies drivers */
-	$driverresult = mysql_query("SELECT * FROM driver WHERE companyid = $companyid");
+	}		
 	/* pull out all of the companies vehicles */
 	$vehicleresult = mysql_query("SELECT * FROM vehicle WHERE companyid = $companyid");
 	/* pull out all of the weather */
@@ -149,15 +148,7 @@ if (isset($_SESSION['username'])) {
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-4">				
-				<h2>About you.....</h2>				
-				<select id="driver-select" name="driver-select">
-					<option disabled="disabled" selected="selected" value="0">Please choose your name from this list...</option>
-					<?
-					while($row = mysql_fetch_array($driverresult)) {
-						echo "<option value=". $row['id'] .">". $row['name'] ."</option>";
-					}
-					?>
-				</select>				
+				<h2>About you.....</h2>	
 				<select id="vehicle-select" name="vehicle-select">
 					<option disabled="disabled" selected="selected" value="0">Please choose your license plate from this list...</option>
 					<?
@@ -174,7 +165,9 @@ if (isset($_SESSION['username'])) {
 				<input type="hidden" value="" id="visibility" name="visibility" />
 				<input type="hidden" value="" id="image" name="image" />
 				<input type="hidden" value="" id="imagealt" name="imagealt" />
-				<input type="hidden" value="<?=$companyid;?>" id="companyid" name="companyid" />				
+				<input type="hidden" value="<?=$companyid;?>" id="companyid" name="companyid" />	
+				<input type="hidden" value="<?=$driverid;?>" id="driver-select" name="driver-select" />
+				
 				<a href="#three" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="flip" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
 				<button type="submit" class="next" data-inline="true" data-icon="gear" aria-disabled="false">Log App-cident</button>
 			</div><!-- /content -->

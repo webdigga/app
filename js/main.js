@@ -107,8 +107,8 @@ $(document).ready(function() {
 					$(this).addClass('error');					
 				}	
 				// we are going to add the style in jquery as no prev css selector				
-				$('#driver-select, #vehicle-select').prev().css('color', '1px solid #222');
-				$('#driver-select.error, #vehicle-select.error').prev().css('color', 'red');	
+				$('#vehicle-select').prev().css('color', '1px solid #222');
+				$('#vehicle-select.error').prev().css('color', 'red');	
 				$(this).change(function(){
 					if (!$(this).length) {
 						$(this).addClass('error');
