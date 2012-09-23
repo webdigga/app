@@ -65,7 +65,7 @@ if (isset($_SESSION['username'])) {
 	
 		<div data-role="page" id="one">
 			<div data-role="header">
-				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>			
+				<a href="#one" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>			
 				<h1>APP-CIDENT</h1>
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
@@ -84,7 +84,7 @@ if (isset($_SESSION['username'])) {
 				<input type="text" name="tpMake" id="tpMake" value="" data-mini="true" />	
 				<label for="tpModel">Enter 3rd party model:</label>
 				<input type="text" name="tpModel" id="tpModel" value="" data-mini="true" />					
-				<a href="#two" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
+				<a href="#two" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="none" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
 			</div><!-- /content -->			
 			<div data-role="footer" data-position="fixed" class="footer">
 				<div class="prev logo"></div>
@@ -94,7 +94,7 @@ if (isset($_SESSION['username'])) {
 		
 		<div data-role="page" id="two">
 			<div data-role="header">
-				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+				<a href="#one" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 				<h1>APP-CIDENT</h1>
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
@@ -108,8 +108,8 @@ if (isset($_SESSION['username'])) {
 				<a href="#" class="remove-photo" style="display:none;" data-role="button" data-icon="minus" data-iconpos="notext">Minus</a>
 				<label for="message">Give a description here of exactly how the accident occurred:</label>
 				<textarea name="message" id="message"></textarea>				
-				<a href="#one" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="flip" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
-				<a href="#three" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
+				<a href="#one" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="none" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
+				<a href="#three" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="none" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
 			</div><!-- /content -->
 			<div data-role="footer" data-position="fixed" class="footer">
 				<div class="prev logo"></div>
@@ -119,7 +119,7 @@ if (isset($_SESSION['username'])) {
 		
 		<div data-role="page" id="three">
 			<div data-role="header">
-				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+				<a href="#one" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 				<h1>APP-CIDENT</h1>
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
@@ -132,8 +132,8 @@ if (isset($_SESSION['username'])) {
 				<label><input type="checkbox" name="checkInteriorPhotos" id="checkInteriorPhotos" /> Take photos of 3rd party interior </label>
 				<label><input type="checkbox" name="checkTpPhotos" id="checkTpPhotos" /> Take photos of 3rd party </label>
 				<label><input type="checkbox" name="checkPolice" id="checkPolice" /> Report the incident to the police </label>	
-				<a href="#two" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="flip" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
-				<a href="#four" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="flip data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
+				<a href="#two" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="none" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
+				<a href="#four" class="next" data-inline="true" data-role="button" data-icon="forward" data-transition="none" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Next</a>
 			</div><!-- /content -->
 			<div data-role="footer" data-position="fixed" class="footer">
 				<div class="prev logo"></div>
@@ -143,7 +143,7 @@ if (isset($_SESSION['username'])) {
 		
 		<div data-role="page" id="four">
 			<div data-role="header">
-				<a href="#one" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+				<a href="#one" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 				<h1>APP-CIDENT</h1>
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
@@ -168,7 +168,7 @@ if (isset($_SESSION['username'])) {
 				<input type="hidden" value="<?=$companyid;?>" id="companyid" name="companyid" />	
 				<input type="hidden" value="<?=$driverid;?>" id="driver-select" name="driver-select" />
 				
-				<a href="#three" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="flip" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
+				<a href="#three" class="prev" data-inline="true" data-role="button" data-icon="back" data-transition="none" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span">Back</a>
 				<button type="submit" class="next" data-inline="true" data-icon="gear" aria-disabled="false">Log App-cident</button>
 			</div><!-- /content -->
 			<div data-role="footer" data-position="fixed" class="footer">
@@ -183,7 +183,7 @@ if (isset($_SESSION['username'])) {
 	
 	<div data-role="page" id="login">
 		<div data-role="header">	
-			<a href="#" data-icon="home" data-transition="flip" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
+			<a href="#" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 			<h1>APP-CIDENT</h1>
 			<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 		</div>

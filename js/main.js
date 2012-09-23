@@ -77,6 +77,9 @@ $(document).ready(function() {
 	
 	$('#sendMail').submit(function() {
 		// Add class of error to all input fields that do not have value
+		
+		
+		/*
 		$('input, textarea, select').each(function() {
 			// checkboxes
 			if($(this).parent().parent().hasClass('section-3')===true) {
@@ -138,11 +141,14 @@ $(document).ready(function() {
 					}
 				});
 			}
-		});		
+		});
+		*/
+		
+		
 		// check for errors
 		if ($(this).find('.error').length > 0) {		
 			var getPageId = $('.error:eq(0)').parents('div[data-role="page"]').attr('id');
-			$.mobile.changePage($('#'+getPageId), {transition:"flip"});
+			$.mobile.changePage($('#'+getPageId), {transition:"none"});
 			return false;
 		} else {		
 			return true;
