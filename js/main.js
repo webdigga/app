@@ -8,7 +8,7 @@ $(document).ready(function() {
 	var photoCount = 1;
 	$('.add-photo').live("click", function() {				
 		$('.remove-photo').show();		
-		$('<input type="file" name="file[]" id="file'+ photoCount +'" size="20" />').insertAfter('#file' + (photoCount-1)); 
+		$('<input type="file" name="file[]" id="file'+ photoCount +'" multiple />').insertAfter('#file' + (photoCount-1)); 
 		photoCount++;
 	});	
 
