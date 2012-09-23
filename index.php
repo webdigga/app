@@ -53,11 +53,6 @@ if (isset($_SESSION['username'])) {
 	}
 	?>
 	
-	
-	
-	
-	
-	
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile.structure-1.1.1.min.css" /> 
   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
 	<script src="/js/main.js"></script>
@@ -67,7 +62,7 @@ if (isset($_SESSION['username'])) {
 	
 	<? if(isset($_SESSION["username"])) {?>
 
-	<form id="sendMail" action="action.php" method="post" enctype="multipart/form-data" data-ajax="false">
+	<form id="sendMail" action="action.php" method="post" enctype="multipart/form-data">
 	
 		<div data-role="page" id="one">
 			<div data-role="header">
