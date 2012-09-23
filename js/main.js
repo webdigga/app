@@ -76,11 +76,9 @@ $(document).ready(function() {
 	}	
 	
 	$('#sendMail').submit(function() {
-		// Add class of error to all input fields that do not have value
+		// Add class of error to all input fields that do not have value	
 		
-		
-		/*
-		$('input, textarea, select').each(function() {
+		$('input[type="text"], input[type="checkbox"], input[type="tel"], textarea, select').each(function() {
 			// checkboxes
 			if($(this).parent().parent().hasClass('section-3')===true) {
 				if($(this).is(':checked')) {				
@@ -142,7 +140,7 @@ $(document).ready(function() {
 				});
 			}
 		});
-		*/
+		
 		
 		
 		// check for errors

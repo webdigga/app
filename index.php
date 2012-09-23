@@ -103,7 +103,7 @@ if (isset($_SESSION['username'])) {
 				<p>
 					<em>Please upload photo(s) of accident here.</em>
 				</p>
-				<input type="file" name="file[]" id="file0">				
+				<input type="file" name="file[]" id="file0" value="">				
 				<a href="#" class="add-photo" data-role="button" data-icon="add" data-iconpos="notext">Add</a>
 				<a href="#" class="remove-photo" style="display:none;" data-role="button" data-icon="minus" data-iconpos="notext">Minus</a>
 				<label for="message">Give a description here of exactly how the accident occurred:</label>
