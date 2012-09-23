@@ -61,7 +61,7 @@ if (isset($_SESSION['username'])) {
 	
 	<? if(isset($_SESSION["username"])) {?>
 
-	<form id="sendMail" action="action.php" method="post" enctype="multipart/form-data">
+	<form id="sendMail" action="action.php" method="post" data-ajax="false" enctype="multipart/form-data">
 	
 		<div data-role="page" id="one">
 			<div data-role="header">
