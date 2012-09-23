@@ -5,7 +5,7 @@ include('dbconnect.php');
 require_once('class.phpmailer.php');
 include("class.smtp.php");
 
-
+/*
 echo '<pre>';
 print_r($_FILES);
 echo  '</pre>';
@@ -13,7 +13,7 @@ echo  '</pre>';
 echo '<pre>';
 print_r($_POST);
 echo  '</pre>';
-
+*/
 
 //files
 $uploaded = 0;
@@ -127,25 +127,26 @@ try {
   echo $e->getMessage(); //Boring error messages from anything else!
 }
 ?>
-<!--
+
 <!DOCTYPE html> 
 <html> 
 	<head> 
 	<title>App-cident</title> 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile.structure-1.1.1.min.css" />
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/css/main.css" />		
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+	<link rel="stylesheet" href="/css/dhl.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile.structure-1.1.1.min.css" /> 
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
 	<script src="/js/main.js"></script>
+  <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 </head> 
-<body data-theme="d">	
+<body>	
 	<div data-role="page" id="login">
 		<div data-role="header">			
 			<h1>APP-CIDENT</h1>			
 		</div>
-		<div data-role="content" class="ui-body ui-body-e">	
+		<div data-role="content">	
 			<h2>Accident has been logged.....</h2>
 			<p>You have successfully logged an accident with <?=$uploaded;?> files uploaded. The accident id is <?=$accidentid;?></p>
 			<h3>Next Steps.....</h3>
@@ -157,4 +158,3 @@ try {
 	</div>
 </body>
 </html>
--->
