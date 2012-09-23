@@ -66,8 +66,7 @@ textarea {
    ========================================================================== */
 
 /* file */
-input[type="file"] {
-	width: 25%;
+input[type="file"] {	
 	margin-bottom: 35px;
 	float:left;
 	clear:left;
