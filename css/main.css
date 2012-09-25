@@ -113,6 +113,15 @@ label.ui-input-text {
 	color: white /*{a-bar-color}*/;
 }
 
+/* refresh button */
+.refresh {
+	 float:left;
+}
+.section-1 em {
+	line-height: 2.7em;
+	padding-left: 10px;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

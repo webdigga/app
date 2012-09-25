@@ -4,6 +4,103 @@ $(document).bind("mobileinit", function(){
 });
 
 $(document).ready(function() {
+
+	// check for local storage
+	function supports_local_storage() {
+		try {
+			return 'localStorage' in window && window['localStorage'] !== null;
+		} catch(e){
+			return false;
+		}
+	}
+	// create the storage area if we are able to
+	supports_local_storage();
+	// save the data as we proceed through the form
+	var localCount = 0;	
+	$('.data-store, .home').click(function(){
+		localStorage.setItem("tpName", $('#tpName').val());
+		localStorage.setItem("tpPneNumber", $('#tpPneNumber').val());
+		localStorage.setItem("tpLicensePlateNumber", $('#tpLicensePlateNumber').val());
+		localStorage.setItem("tpMake", $('#tpMake').val());
+		localStorage.setItem("tpModel", $('#tpModel').val());	
+		localStorage.setItem("message", $('#message').val());	
+		localStorage.setItem("takenPhotograph", $('#takenPhotograph').is(':checked'));
+		localStorage.setItem("check3rdPartyId", $('#check3rdPartyId').is(':checked'));
+		localStorage.setItem("checkInjuries", $('#checkInjuries').is(':checked'));
+		localStorage.setItem("checkPhotos", $('#checkPhotos').is(':checked'));
+		localStorage.setItem("checkInteriorPhotos", $('#checkInteriorPhotos').is(':checked'));
+		localStorage.setItem("checkTpPhotos", $('#checkTpPhotos').is(':checked'));
+		localStorage.setItem("checkPolice", $('#checkPolice').is(':checked'));	
+		localStorage.setItem("vehicle-select", $('#vehicle-select').val());	
+		localStorage.setItem("weather-select", $('#weather-select').val());
+		localStorage.setItem("streetName", $('#streetName').val());
+		localStorage.setItem("townName", $('#townName').val());
+		localStorage.setItem("country-select", $('#country-select').val());	
+		for (var i = 0; i < localStorage.length; i++){
+			if (localStorage.getItem(localStorage.key(i)) !="" && localStorage.getItem(localStorage.key(i)) !="0" && localStorage.getItem(localStorage.key(i)) !="false") {
+				localCount++;
+			}    
+		}		
+	});	
+	for (var i = 0; i < localStorage.length; i++){
+		if (localStorage.getItem(localStorage.key(i)) !="" && localStorage.getItem(localStorage.key(i)) !="0" && localStorage.getItem(localStorage.key(i)) !="false") {
+			localCount++;
+		}    
+	}	
+	
+	$('.refresh').click(function(){		
+		// section 1
+		$('#tpName').val(localStorage.getItem('tpName'));
+		$('#tpPneNumber').val(localStorage.getItem('tpPneNumber'));
+		$('#tpLicensePlateNumber').val(localStorage.getItem('tpLicensePlateNumber'));
+		$('#tpMake').val(localStorage.getItem('tpMake'));
+		$('#tpModel').val(localStorage.getItem('tpModel'));
+		// section 2
+		$('#message').val(localStorage.getItem('message'));
+		// section 3
+		if (localStorage.getItem('takenPhotograph')==="true") {
+			$('#takenPhotograph').attr('checked', 'checked');
+			$('#takenPhotograph').prev().removeClass('ui-checkbox-off').addClass('ui-checkbox-on');
+			$('#takenPhotograph').prev().children().children('.ui-icon').removeClass('ui-icon-checkbox-off').addClass('ui-icon-checkbox-on');			
+		}
+		if (localStorage.getItem('check3rdPartyId')==="true") {
+			$('#check3rdPartyId').attr('checked', 'checked');
+			$('#check3rdPartyId').prev().removeClass('ui-checkbox-off').addClass('ui-checkbox-on');
+			$('#check3rdPartyId').prev().children().children('.ui-icon').removeClass('ui-icon-checkbox-off').addClass('ui-icon-checkbox-on');
+		}
+		if (localStorage.getItem('checkInjuries')==="true") {
+			$('#checkInjuries').attr('checked', 'checked');
+			$('#checkInjuries').prev().removeClass('ui-checkbox-off').addClass('ui-checkbox-on');
+			$('#checkInjuries').prev().children().children('.ui-icon').removeClass('ui-icon-checkbox-off').addClass('ui-icon-checkbox-on');
+		}
+		if (localStorage.getItem('checkPhotos')==="true") {
+			$('#checkPhotos').attr('checked', 'checked');
+			$('#checkPhotos').prev().removeClass('ui-checkbox-off').addClass('ui-checkbox-on');
+			$('#checkPhotos').prev().children().children('.ui-icon').removeClass('ui-icon-checkbox-off').addClass('ui-icon-checkbox-on');
+		}
+		if (localStorage.getItem('checkInteriorPhotos')==="true") {
+			$('#checkInteriorPhotos').attr('checked', 'checked');
+			$('#checkInteriorPhotos').prev().removeClass('ui-checkbox-off').addClass('ui-checkbox-on');
+			$('#checkInteriorPhotos').prev().children().children('.ui-icon').removeClass('ui-icon-checkbox-off').addClass('ui-icon-checkbox-on');
+		}
+		if (localStorage.getItem('checkTpPhotos')==="true") {
+			$('#checkTpPhotos').attr('checked', 'checked');
+			$('#checkTpPhotos').prev().removeClass('ui-checkbox-off').addClass('ui-checkbox-on');
+			$('#checkTpPhotos').prev().children().children('.ui-icon').removeClass('ui-icon-checkbox-off').addClass('ui-icon-checkbox-on');
+		}
+		if (localStorage.getItem('checkPolice')==="true") {
+			$('#checkPolice').attr('checked', 'checked');
+			$('#checkPolice').prev().removeClass('ui-checkbox-off').addClass('ui-checkbox-on');
+			$('#checkPolice').prev().children().children('.ui-icon').removeClass('ui-icon-checkbox-off').addClass('ui-icon-checkbox-on');
+		}	
+		// section 4		
+		$('#vehicle-select').val(localStorage.getItem('vehicle-select'));
+		$('#weather-select').val(localStorage.getItem('weather-select'));	
+		$('#streetName').val(localStorage.getItem('streetName'));
+		$('#townName').val(localStorage.getItem('townName'));
+		$('#country-select').val(localStorage.getItem('country-select'));		
+	});
+
 	/* add/remove file input */
 	var photoCount = 1;
 	$('.add-photo').live("click", function() {				
