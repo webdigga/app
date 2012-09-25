@@ -72,7 +72,7 @@ if (isset($_SESSION['username'])) {
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-1">				
-				<h2>About third party.....</h2>
+				<h2>1/4 - About third party.....</h2>
 				<p>
 					<a href="#" class="refresh" data-role="button" data-icon="refresh" data-iconpos="notext">Refresh</a>					
 					<em>Click refresh to retrieve your last session.</em>
@@ -102,7 +102,7 @@ if (isset($_SESSION['username'])) {
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-2">
-				<h2>About the accident.....</h2>
+				<h2>2/4 - About the accident.....</h2>
 				<p>
 					<em>Please upload photo(s) of accident here.</em>
 				</p>
@@ -127,7 +127,7 @@ if (isset($_SESSION['username'])) {
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-3">	
-				<h2>Checklist.....</h2>
+				<h2>3/4 - Checklist.....</h2>
 				<label><input type="checkbox" name="takenPhotograph" id="takenPhotograph" /> Take photographs </label>
 				<label><input type="checkbox" name="check3rdPartyId" id="check3rdPartyId" /> Check 3rd party id </label>		
 				<label><input type="checkbox" name="checkInjuries" id="checkInjuries" /> Check for injuries to 3rd party </label>
@@ -153,7 +153,7 @@ if (isset($_SESSION['username'])) {
 				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-4">				
-				<h2>About you.....</h2>	
+				<h2>4/4 - About you.....</h2>	
 				<select id="vehicle-select" name="vehicle-select">
 					<option disabled="disabled" selected="selected" value="0">Please choose your license plate from this list...</option>
 					<?

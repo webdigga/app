@@ -18,12 +18,15 @@ $(document).ready(function() {
 	// save the data as we proceed through the form
 	var localCount = 0;	
 	$('.data-store, .home').click(function(){
+		// section 1
 		localStorage.setItem("tpName", $('#tpName').val());
 		localStorage.setItem("tpPneNumber", $('#tpPneNumber').val());
 		localStorage.setItem("tpLicensePlateNumber", $('#tpLicensePlateNumber').val());
 		localStorage.setItem("tpMake", $('#tpMake').val());
-		localStorage.setItem("tpModel", $('#tpModel').val());	
-		localStorage.setItem("message", $('#message').val());	
+		localStorage.setItem("tpModel", $('#tpModel').val());
+		// section 2
+		localStorage.setItem("message", $('#message').val());
+		// section 3
 		localStorage.setItem("takenPhotograph", $('#takenPhotograph').is(':checked'));
 		localStorage.setItem("check3rdPartyId", $('#check3rdPartyId').is(':checked'));
 		localStorage.setItem("checkInjuries", $('#checkInjuries').is(':checked'));
@@ -31,6 +34,7 @@ $(document).ready(function() {
 		localStorage.setItem("checkInteriorPhotos", $('#checkInteriorPhotos').is(':checked'));
 		localStorage.setItem("checkTpPhotos", $('#checkTpPhotos').is(':checked'));
 		localStorage.setItem("checkPolice", $('#checkPolice').is(':checked'));	
+		// section 4
 		localStorage.setItem("vehicle-select", $('#vehicle-select').val());	
 		localStorage.setItem("weather-select", $('#weather-select').val());
 		localStorage.setItem("streetName", $('#streetName').val());
@@ -48,7 +52,8 @@ $(document).ready(function() {
 		}    
 	}	
 	
-	$('.refresh').click(function(){		
+	// add the data back into form
+	function addLocal() {
 		// section 1
 		$('#tpName').val(localStorage.getItem('tpName'));
 		$('#tpPneNumber').val(localStorage.getItem('tpPneNumber'));
@@ -98,8 +103,14 @@ $(document).ready(function() {
 		$('#weather-select').val(localStorage.getItem('weather-select'));	
 		$('#streetName').val(localStorage.getItem('streetName'));
 		$('#townName').val(localStorage.getItem('townName'));
-		$('#country-select').val(localStorage.getItem('country-select'));		
+		$('#country-select').val(localStorage.getItem('country-select'));
+	}
+	// add the data back into form
+	$('.refresh').click(function(){		
+		addLocal();		
 	});
+	// add the data back into form
+	addLocal();
 
 	/* add/remove file input */
 	var photoCount = 1;
