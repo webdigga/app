@@ -949,8 +949,17 @@ a.ui-link-inherit {
 }
 /* loading icon */
 .ui-icon-loading {
+	display:none;
 	background: url(/images/ajax-loader.gif);
 	background-size: 46px 46px;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-color: #CCC;
+	opacity: 0.5;
+	filter: alpha(opacity = 50);
 }
 /* Button corner classes
 -----------------------------------------------------------------------------------------------------------*/

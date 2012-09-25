@@ -5,15 +5,8 @@ include('dbconnect.php');
 require_once('class.phpmailer.php');
 include("class.smtp.php");
 
-/*
-echo '<pre>';
-print_r($_FILES);
-echo  '</pre>';
-
-echo '<pre>';
-print_r($_POST);
-echo  '</pre>';
-*/
+// change this to true to stop all db insertions and mail send as well as priting all the data out
+$debugMode = false;
 
 //files
 $uploaded = 0;
@@ -61,13 +54,34 @@ $tpMake=$_POST['tpMake'];
 $tpModel=$_POST['tpModel'];
 $driverid=$_POST['driver-select'];
 $vehicleid=$_POST['vehicle-select'];
-$geolocation=$_POST['geolocation'];
-$temperature=$_POST['temperature'];
-$weather=$_POST['weather'];
-$wind=$_POST['wind'];
-$visibility=$_POST['visibility'];
-$image=$_POST['image'];
-$imagealt=$_POST['imagealt'];
+
+// check if geolocation worked
+$locationStatus=$_POST['location-status'];
+if ($locationStatus == "true") {
+	$geolocation=$_POST['geolocation'];
+	$geolocationStandard=0;
+} else {
+	$geolocation=0;
+	$geolocationStandard=$_POST['streetName'] . ',' . $_POST['townName'] . ',' . $_POST['country-select'];
+}
+$weatherStatus=$_POST['weather-status'];
+if ($weatherStatus == "true") {
+	$temperature=$_POST['temperature'];
+	$weather=$_POST['weather'];
+	$wind=$_POST['wind'];
+	$visibility=$_POST['visibility'];
+	$image=$_POST['image'];
+	$imagealt=$_POST['imagealt'];
+// if it didnt we are going to take the value from the drop down
+} else {
+	$temperature=0;
+	$weather=$_POST['weather-select'];
+	$wind='n/a';
+	$visibility=0;
+	$image='n/a';
+	$imagealt='n/a';
+}
+
 $companyid=$_POST['companyid'];
 
 // prepare the mail
@@ -92,33 +106,34 @@ try {
   $mail->Subject = 'Appcident info';  
   $mail->Body = "Dear Appcident Admin,\r\n\r\nAn accident has been logged by ".$name.", driving vehicle registered:- ".$licensePlateNumber.".\r\nThe driver can be contacted on:- ".$phoneNumber.".\r\nBelow are the details of the accident.\r\n\r\nEvent:- ".$message."\r\n\r\nThird Party Details:-\r\n\r\nName: ".$tpName."\r\nPhone Number: ".$tpPneNumber."\r\nLicense Plate Number: ".$tpLicensePlateNumber."\r\nMake: ".$tpMake."\r\nModel: ".$tpModel."\r\n\r\n";
   
-	
-	// DO THE INSERTS
-	// insert 3rd party details
-  mysql_query("INSERT INTO thirdparty (name, phonenumber) VALUES ('$tpName', '$tpPneNumber')");
-  $tpdriverid = mysql_insert_id();
-  // insert 3rd party vehicle
-  mysql_query("INSERT INTO thirdpartyvehicle (id, licenseplate, make, model) VALUES ('$tpdriverid', '$tpLicensePlateNumber', '$tpMake', '$tpModel')");
-  $tpvehicleid = mysql_insert_id(); 
-  // insert accident details
-  $accidentSql = "INSERT INTO accident (driverid, thirdpartyid, vehiclelicenseplate, thirdpartylicenseplate, location, description, companyid) VALUES ('$driverid', '$tpdriverid', '$vehicleid', '$tpLicensePlateNumber', '$geolocation', '$message', $companyid)";	
-	mysql_query($accidentSql);
-  $accidentid = mysql_insert_id();
-  // insert images details and attach
-	$uploaded = 0;
-	foreach ($_FILES['file']['name'] as $i => $name) {  
-		$imageSource = "images/appcidents/" . date('Y_m_d_H_i_s_'). $uploaded . $_FILES["file"]["name"][$uploaded]; 
-		$mail->AddAttachment($imageSource);
-		mysql_query("INSERT INTO images (accidentid, imagelocation) VALUES ('$accidentid', '$imageSource')");
-		$uploaded++;
-	} 
-  // insert further action record ready for adding notes
-  mysql_query("INSERT INTO furtheraction (accidentid, statusid) VALUES ('$accidentid', '1')");  
-  // insert weather details
-  mysql_query("INSERT INTO weather (id, temperature, weather, wind, visibility, image, imagealt) VALUES ('$accidentid', '$temperature', '$weather', '$wind', '$visibility', '$image', '$imagealt')");
-  
-	// send the mail
-  $mail->Send();
+	if ($debugMode == false) {
+		// DO THE INSERTS
+		// insert 3rd party details
+		mysql_query("INSERT INTO thirdparty (name, phonenumber) VALUES ('$tpName', '$tpPneNumber')");
+		$tpdriverid = mysql_insert_id();
+		// insert 3rd party vehicle
+		mysql_query("INSERT INTO thirdpartyvehicle (id, licenseplate, make, model) VALUES ('$tpdriverid', '$tpLicensePlateNumber', '$tpMake', '$tpModel')");
+		$tpvehicleid = mysql_insert_id(); 
+		// insert accident details
+		$accidentSql = "INSERT INTO accident (driverid, thirdpartyid, vehiclelicenseplate, thirdpartylicenseplate, location, location_standard, description, companyid) VALUES ('$driverid', '$tpdriverid', '$vehicleid', '$tpLicensePlateNumber', '$geolocation', '$geolocationStandard', '$message', $companyid)";	
+		mysql_query($accidentSql);
+		$accidentid = mysql_insert_id();
+		// insert images details and attach
+		$uploaded = 0;
+		foreach ($_FILES['file']['name'] as $i => $name) {  
+			$imageSource = "images/appcidents/" . date('Y_m_d_H_i_s_'). $uploaded . $_FILES["file"]["name"][$uploaded]; 
+			$mail->AddAttachment($imageSource);
+			mysql_query("INSERT INTO images (accidentid, imagelocation) VALUES ('$accidentid', '$imageSource')");
+			$uploaded++;
+		} 
+		// insert further action record ready for adding notes
+		mysql_query("INSERT INTO furtheraction (accidentid, statusid) VALUES ('$accidentid', '1')");  
+		// insert weather details
+		mysql_query("INSERT INTO weather (id, temperature, weather, wind, visibility, image, imagealt) VALUES ('$accidentid', '$temperature', '$weather', '$wind', '$visibility', '$image', '$imagealt')");
+		
+		// send the mail
+		$mail->Send();
+	}
 
 // output any error messages
 } catch (phpmailerException $e) {
@@ -161,8 +176,6 @@ try {
 	} else {	
 		echo "<link rel=\"stylesheet\" href=\"/css/default.css\" />";
 	}
-	
-	
 	?>	
 	
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile.structure-1.1.1.min.css" /> 
@@ -171,11 +184,32 @@ try {
   <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
 </head> 
 <body>	
-	<div data-role="page">
+	<div data-role="page">	
 		<div data-role="header">			
-			<h1>APP-CIDENT</h1>			
+			<h1>App-cident</h1>			
 		</div>
 		<div data-role="content">	
+			<?
+			if ($debugMode == true) {
+				echo '<pre>';
+				print_r($_FILES);
+				echo  '</pre>';
+				echo '<pre>';
+				print_r($_POST);					
+				// if we have manually entered the geolocation, let's see what we have changed it to
+				if ($weatherStatus == "false") {				
+					echo "temparature - " . $temperature . "<br />";
+					echo "weather - " . $weather . "<br />";
+					echo "wind - " . $wind . "<br />";
+					echo "visibility - " . $visibility . "<br />";
+					echo "image - " . $image . "<br />";
+					echo "imagealt - " . $imagealt . "<br />";					
+					echo "geolocation - " . $geolocation . "<br />";
+					echo "geolocationStandard - " . $geolocationStandard . "<br />";			
+				}	
+				echo  '</pre>';				
+			} else {
+			?>
 			<h2>Accident has been logged.....</h2>
 			<p>You have successfully logged an accident with <?=$uploaded;?> files uploaded. The accident id is <?=$accidentid;?></p>
 			<h3>Next Steps.....</h3>
@@ -183,6 +217,7 @@ try {
 				<li>Note down the accident id above</li>
 				<li>Report into base at the earliest convenience to discuss the accident</li>
 			</ul>
+			<?}?>
 		</div>
 	</div>
 </body>

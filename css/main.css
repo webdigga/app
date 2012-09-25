@@ -78,6 +78,7 @@ a.add-photo, a.remove-photo {
 a.remove-photo {
 	margin-left:10px;
 }
+
 /* navigation buttons */
 .next {
 	float:right;
@@ -85,19 +86,23 @@ a.remove-photo {
 .prev {
 	float:left;
 }
+
 /* login */
 .error-message {
 	color:red;
 }
+
 /* footer */
 div.footer {
 	padding: 5px 0;
 	text-align: center;
 }
+
 /* form validation */
 input[type="text"].error, input[type="tel"].error, textarea.error, input[type="file"].error {
 	border: 1px solid red;
 }
+
 /* jquery mobile overrides */
 label.ui-input-text {
 	clear:left;
@@ -107,7 +112,6 @@ label.ui-input-text {
 	background: #333 /*{a-bar-background-color}*/;
 	color: white /*{a-bar-color}*/;
 }
-
 
 /* ==========================================================================
    Helper classes
