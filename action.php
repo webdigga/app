@@ -179,6 +179,20 @@ try {
 	?>	
 	
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile.structure-1.1.1.min.css" /> 
+	
+	<!-- favicons -->
+	<link rel="icon" type="image/png" href="/img/branding/favicon-16.png" />	
+	<!-- Apple touch icon: -->
+	<link rel="apple-touch-icon-precomposed" href="/img/branding/favicon-57.png">	
+	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+	<link rel="apple-touch-icon-precomposed" href="/img/branding/favicon-57.png">
+	<!-- For first- and second-generation iPad: -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/branding/favicon-72.png">
+	<!-- For iPhone with high-resolution Retina display: -->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/branding/favicon-114.png">
+	<!-- For third-generation iPad with high-resolution Retina display: -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/branding/favicon-144.png">
+	
   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
 	<script src="/js/main.js"></script>
   <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
