@@ -11,9 +11,9 @@
 
 
 .logo {
-	background: url('/images/logos/3.png') no-repeat #111;
+	background: url('/images/logos/3.png') no-repeat 30% 0 #111;
 	width: 134px;
-	height: 42px;
+	height: 42px;	
 }
 
 /* Swatches */
