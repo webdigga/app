@@ -85,7 +85,7 @@ if (isset($_SESSION['username'])) {
 			<div data-role="header">
 				<a href="#one" class="home" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>			
 				<h1>App-cident</h1>
-				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+				<a href="http://app-cident.com/help.php" target="_blank" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-1">				
 				<h2>1/4 - About third party.....</h2>
@@ -115,7 +115,7 @@ if (isset($_SESSION['username'])) {
 			<div data-role="header">
 				<a href="#one" class="home" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 				<h1>App-cident</h1>
-				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+				<a href="http://app-cident.com/help.php" target="_blank" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-2">
 				<h2>2/4 - About the accident.....</h2>
@@ -140,7 +140,7 @@ if (isset($_SESSION['username'])) {
 			<div data-role="header">
 				<a href="#one" class="home" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 				<h1>App-cident</h1>
-				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+				<a href="http://app-cident.com/help.php" target="_blank" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-3">	
 				<h2>3/4 - Checklist.....</h2>
@@ -166,7 +166,7 @@ if (isset($_SESSION['username'])) {
 			<div data-role="header">
 				<a href="#one" class="home" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 				<h1>App-cident</h1>
-				<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+				<a href="http://app-cident.com/help.php" target="_blank" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 			</div>
 			<div data-role="content" class="section-4">				
 				<h2>4/4 - About you.....</h2>	
@@ -469,7 +469,7 @@ if (isset($_SESSION['username'])) {
 		<div data-role="header">	
 			<a href="#" class="home" data-icon="home" data-transition="none" data-iconpos="notext" data-direction="reverse" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Home">Home</a>
 			<h1>App-cident</h1>
-			<a href="#" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
+			<a href="http://app-cident.com/help.php" target="_blank" data-icon="info" data-iconpos="notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Help">Help</a>
 		</div>
 		<div data-role="content">	
 			<h2>Login</h2>
