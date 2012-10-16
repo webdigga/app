@@ -171,7 +171,7 @@ if (isset($_SESSION['username'])) {
 			<div data-role="content" class="section-4">				
 				<h2>4/4 - About you.....</h2>	
 				<select id="vehicle-select" name="vehicle-select">
-					<option disabled="disabled" selected="selected" value="0">Please choose your license plate from this list...</option>
+					<option selected="selected" value="0">Please choose your license plate from this list...</option>
 					<?
 					while($row = mysql_fetch_array($vehicleresult)) {
 						$licenseplate = str_replace(' ', '', $row['licenseplate']); 
@@ -182,7 +182,7 @@ if (isset($_SESSION['username'])) {
 				
 				<h3 class="geo-fail">If you see this, it's because we couldn't get your location.....</h3>				
 				<select id="weather-select" name="weather-select">
-					<option disabled="disabled" selected="selected" value="0">Please choose weather type...</option>
+					<option selected="selected" value="0">Please choose weather type...</option>
 					<?
 					while($row = mysql_fetch_array($weatherresult)) {						
 						echo "<option value=". $row['type'] .">". $row['type'] ."</option>";
@@ -196,7 +196,7 @@ if (isset($_SESSION['username'])) {
 				<input type="text" name="townName" id="townName" value="" data-mini="true" />
 				
 				<select id="country-select" name="country-select">
-					<option selected="selected" disabled="disabled" value="0">Select Country</option>
+					<option selected="selected" value="0">Select Country</option>
 					<option value="United Kingdom">United Kingdom</option> 
 					<option value="United States">United States</option>					
 					<option value="Afghanistan">Afghanistan</option> 
