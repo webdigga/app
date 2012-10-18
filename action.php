@@ -6,7 +6,7 @@ require_once('class.phpmailer.php');
 include("class.smtp.php");
 
 // change this to true to stop all db insertions and mail send as well as priting all the data out
-$debugMode = true;
+$debugMode = false;
 
 //files
 $uploaded = 0;
