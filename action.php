@@ -97,10 +97,12 @@ try {
   $mail->Port       = 587;                   // set the SMTP port for the GMAIL server
   $mail->Username   = "webdigga42@gmail.com";  // GMAIL username
   $mail->Password   = "answer42assasin";            // GMAIL password
-  $mail->AddReplyTo('webdigga42@gmail.com', 'Appcident Info');
-  $mail->AddAddress('webdigga42@gmail.com', 'David White');
+  $mail->AddReplyTo('webdigga42@gmail.com', 'Appcident Info');  
+	$mail->AddAddress('webdigga42@gmail.com', 'David White');
 	$mail->AddAddress('adam.coogan@gmail.com', 'Adam Coogan');
 	$mail->AddAddress('jonnyrowse@hotmail.com', 'Jonny Rowse');
+	$mail->AddAddress('waynem1965@googlemail.com', 'Wayne Martin');
+	$mail->AddAddress('me@simonpaige.com', 'Simon Paige');	
   $mail->SetFrom('webdigga42@gmail.com', 'Appcident Info');
   $mail->AddReplyTo('webdigga42@gmail.com', 'Appcident Info');
   $mail->Subject = 'Appcident info';  
