@@ -1,7 +1,8 @@
 <?
 
 $dbname = "localhost";
-$dbuser = "diggasco_web";
+$dbuser = "root";
+//$dbuser="diggasco_web";
 $dbpass = "digga47digga";
 
 $con = mysql_connect($dbname,$dbuser,$dbpass);

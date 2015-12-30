@@ -42,9 +42,27 @@ if (isset($_SESSION['username'])) {
 			case 3:
 				echo "<link rel=\"stylesheet\" href=\"/css/demo.css\" />";
 			break;
+			// unite
 			case 4:
 				echo "<link rel=\"stylesheet\" href=\"/css/unite.css\" />";
+			break;			
+			// zenith insurance
+			case 6:
+				echo "<link rel=\"stylesheet\" href=\"/css/zenith.css\" />";
 			break;
+			// addison lee insurance
+			case 7:
+				echo "<link rel=\"stylesheet\" href=\"/css/addison-lee.css\" />";
+			break;
+			// city sprint
+			case 8:
+				echo "<link rel=\"stylesheet\" href=\"/css/city-sprint.css\" />";
+			break;
+			
+			
+			
+			
+			
 			default:
 				echo "<link rel=\"stylesheet\" href=\"/css/default.css\" />";
 			break;
